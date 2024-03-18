@@ -22,33 +22,33 @@ price_model = joblib.load('rec_price.pkl')
 def recommend(made, color_group, type_group, price_range):
     # Your existing code for recommendation here...
 
-# Streamlit UI
-st.title('Car Recommendation System')
+    # Streamlit UI
+    st.title('Car Recommendation System')
 
-# Sidebar for user inputs
-st.sidebar.title('Filters')
-made = st.sidebar.selectbox('Car Manufacturer Country', df['Made'].unique())
-color_group = st.sidebar.selectbox('Color Group', df['color_group'].unique())
-type_group = st.sidebar.selectbox('Type Group', df['type_group'].unique())
-price_range = st.sidebar.slider('Price Range', min_value=0, max_value=50000, value=(5000,10000), step=1000)
+    # Sidebar for user inputs
+    st.sidebar.title('Filters')
+    made = st.sidebar.selectbox('Car Manufacturer Country', df['Made'].unique())
+    color_group = st.sidebar.selectbox('Color Group', df['color_group'].unique())
+    type_group = st.sidebar.selectbox('Type Group', df['type_group'].unique())
+    price_range = st.sidebar.slider('Price Range', min_value=0, max_value=50000, value=(5000,10000), step=1000)
 
-# Display recommendations
-if st.sidebar.button('Recommend'):
-    recommendations = recommend(made, color_group, type_group, price_range)
-    st.subheader('Top Car Recommendations')
-    st.dataframe(recommendations)
+    # Display recommendations
+    if st.sidebar.button('Recommend'):
+        recommendations = recommend(made, color_group, type_group, price_range)
+        st.subheader('Top Car Recommendations')
+        st.dataframe(recommendations)
 
-# Price prediction section
-st.title('Price Prediction')
+    # Price prediction section
+    st.title('Price Prediction')
 
-# Input fields for price prediction
-car_engine = st.number_input('Car Engine')
-car_accident = st.number_input('Car Accident')
-car_year = st.number_input('Car Year')
-car_owner = st.number_input('Car Owner')
+    # Input fields for price prediction
+    car_engine = st.number_input('Car Engine')
+    car_accident = st.number_input('Car Accident')
+    car_year = st.number_input('Car Year')
+    car_owner = st.number_input('Car Owner')
 
-# Predict price
-if st.button('Predict Price'):
-    features = [[car_engine, car_accident, car_year, car_owner]]
-    price_prediction = price_model.predict(features)
-    st.success(f'Predicted Price: ${price_prediction[0]:,.2f}')
+    # Predict price
+    if st.button('Predict Price'):
+        features = [[car_engine, car_accident, car_year, car_owner]]
+        price_prediction = price_model.predict(features)
+        st.success(f'Predicted Price: ${price_prediction[0]:,.2f}')
