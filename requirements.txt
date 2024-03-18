@@ -1,3 +1,5 @@
-altair
 pandas
 streamlit
+numpy
+nltk
+scikit-learn
