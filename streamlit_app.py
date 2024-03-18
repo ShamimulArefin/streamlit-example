@@ -15,7 +15,7 @@ def load_data():
 df = load_data()
 
 # Load price prediction model
-price_model = joblib.load('rec_price.pkl')
+price_model = joblib.load('model.pkl')
 
 # Function for recommending cars based on car manufacturer country. 
 # It takes car manufacturer country, color group, type group, and price range as input.
